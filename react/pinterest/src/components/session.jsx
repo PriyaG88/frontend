@@ -26,14 +26,13 @@ const Session = () => {
         Continue with Facebook</button>
         <button type='button' className='session-login-btn google-btn'>
         Continue with Google</button>
-        <p className='terms'>By continuing, you agree to Pinterest's Terms of Service, Privacy
-        Policy
-        </p>
+        <div className='terms'>
+          <p>By continuing, you agree to Pinterest's Terms of Service, Privacy
+          Policy
+          </p>
+        </div>
         <div className='session-info-container'>
           <p>Pinterest helps you find ideas to try.</p>
-          <button type='button' className='session-info-btn'>
-          How it works
-          </button>
         </div>
       </div>
     </div>
