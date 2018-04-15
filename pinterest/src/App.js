@@ -5,9 +5,11 @@ import SessionPage from './components/SessionPage';
 class App extends Component {
   render() {
     return (
-      <div className='session-background'>
+      <div>
+        <div className='session-background' />
         <SessionPage />
       </div>
+
     );
   }
 }
