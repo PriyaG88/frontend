@@ -17,7 +17,9 @@ body {
 /* Session */
 
 .session-background {
+  background-color: #000;
   background-image: url(https://s.pinimg.com/webapp/style/images/bg_multi_case_grid_no_text_white_55_percent-2000ab22.jpg);
+  background-size: cover;
 }
 
 .session-page-container {
@@ -113,4 +115,29 @@ body {
 }
 
 .session-info-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  color: #fff;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "\\30D2ラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "\\30E1イリオ", Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif;
+  width: 230px;
+}
+
+.session-info-container p {
+  background-color: #bd081c;
+  border-radius: 20px;
+  font-size: 18px;
+  padding: 20px;
+  margin-bottom: 0;
+  margin-left: 20px;
+
+}
+
+.info-btn {
+  color: #fff;
+  border: 2px solid #fff;
+  background-color: #bd081c;
+  border-radius: 5px;
+  width: 100px;
 }
