@@ -1,7 +1,6 @@
 /* Reset */
 html {
   height: 100%;
-  width: 100%;
   box-sizing: border-box;
 }
 
@@ -19,18 +18,46 @@ body {
 .session-background {
   background-color: #000;
   background-image: url(https://s.pinimg.com/webapp/style/images/bg_multi_case_grid_no_text_white_55_percent-2000ab22.jpg);
+  background-position: 0 600px;
   background-size: cover;
+  /* animation: 80s bgScroll linear; */
+  position: fixed;
+  height: 100%;
+  width: 100%;
 }
 
-.session-page-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.session-background::after {
+  content: "";
+  background-color: rgba(0, 0, 0, .5);
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes bgScroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 .session-container {
+  z-index: 1;
+}
+
+.session-page-container {
+  position: absolute;
+  z-index: 1;
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
 }
 
 .session-form-container {
@@ -122,6 +149,7 @@ body {
   font-weight: 500;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "\\30D2ラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "\\30E1イリオ", Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif;
   width: 230px;
+  z-index: 1;
 }
 
 .session-info-container p {
