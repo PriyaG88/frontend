@@ -18,7 +18,7 @@ body {
 .session-background {
   background-color: #000;
   background-image: url(https://s.pinimg.com/webapp/style/images/bg_multi_case_grid_no_text_white_55_percent-2000ab22.jpg);
-  background-position: 0 600px;
+  background-position: 0 575px;
   background-size: cover;
   /* animation: 80s bgScroll linear; */
   position: fixed;
