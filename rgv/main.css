@@ -55,3 +55,44 @@
   padding: 15px;
   border: 1px solid red;
 }
+
+/*
+since columns are floated, they are taken out of the document flow
+and other elements will be placed as if they do not exist, we prevent
+this by clearing the float
+
+*/
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+header {
+  background-color: #000;
+  color: #fff;
+  padding: 15px;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  background-color: #33b5e5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  color: #fff;
+  margin-bottom: 7px;
+  padding: 8px;
+}
+
+.menu li:hover {
+  background-color: #09c;
+}
