@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 /* for mobile */
 [class*="col-"] {
   width: 100%;
@@ -62,7 +67,6 @@
 [class*="col-"] {
   float: left;
   padding: 15px;
-  border: 1px solid red;
 }
 
 /*
@@ -82,7 +86,7 @@ html {
   font-family: "Lucida Sans", sans-serif;
 }
 
-header {
+header, footer {
   background-color: #000;
   color: #fff;
   padding: 15px;
@@ -104,4 +108,9 @@ header {
 
 .menu li:hover {
   background-color: #09c;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
