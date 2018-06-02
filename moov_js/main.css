@@ -1,0 +1,29 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, form, ul {
+  margin: 0;
+  padding: 0;
+}
+
+#zip {
+  display: inline-block;
+  width: 50%;
+}
+
+#places {
+  display: inline-block;
+}
+
+li {
+  list-style-type: none;
+}
+
+.selected {
+  background-color: #e2e2e2;
+}
