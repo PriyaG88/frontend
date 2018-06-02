@@ -1,8 +1,14 @@
 (() => {
   const form = document.querySelector('#zip');
   const placesList = document.querySelector('#places');
-  const API_KEY = 'AIzaSyBACdA2DG5Erb1xNXtqwNJg_7o41xzkAss';
   const zipCodesCache = {};
+  let API_KEY = localStorage.getItem("apiKey");
+
+
+   if (!API_KEY) {
+    API_KEY = prompt("Enter API Key:");
+    localStorage.setItem("apiKey", API_KEY);
+  }
 
   placesList.addEventListener('click', e => {
     if (e.target.nodeName === 'LI') {
