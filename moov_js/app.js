@@ -48,7 +48,6 @@
     } else if (!zipCodesCache[zipCode] && isValidZip(zipCode)) {
       fetchLocation(zipCode);
     }
-
   });
 
 
