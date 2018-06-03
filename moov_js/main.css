@@ -1,5 +1,7 @@
 html {
   box-sizing: border-box;
+  height: 100%;
+
 }
 
 *, *:before, *:after {
@@ -11,17 +13,35 @@ body, form, ul {
   padding: 0;
 }
 
+header, footer {
+  background-color: #000;
+  color: #fff;
+  padding: 30px 40px;
+}
+
+h1 {
+  text-align: center;
+}
+
 #zip {
-  display: inline-block;
-  width: 50%;
+
+}
+
+input, button {
+  padding: 10px;
+  font-size: 16px;
+  margin: auto;
+
 }
 
 #places {
-  display: inline-block;
+
 }
 
 li {
   list-style-type: none;
+  cursor: pointer;
+  padding: 12px;
 }
 
 .selected {
