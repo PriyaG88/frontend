@@ -11,13 +11,24 @@
   }
 
   placesList.addEventListener('click', e => {
-    if (e.target.nodeName === 'LI') {
-      const previouslySelected = document.querySelector('.selected');
-      if (previouslySelected) previouslySelected.classList.remove('selected');
+    const zipInput = document.querySelector('input');
+    const prevSelected = document.querySelector('.selected');
 
-      const zipInput = document.querySelector('input');
-      zipInput.value = e.target.dataset.zip;
-      e.target.classList.add('selected');
+    if (e.target.nodeName === 'LI') {
+
+      if (prevSelected && prevSelected !== e.target) {
+        prevSelected.classList.remove('selected');
+        e.target.classList.add('selected');
+        zipInput.value = e.target.dataset.zip;
+
+      } else if (e.target.classList.contains('selected')) {
+        e.target.classList.remove('selected');
+        zipInput.value = '';
+        return;
+      } else {
+        e.target.classList.add('selected');
+        zipInput.value = e.target.dataset.zip;
+      }
     }
   });
 
@@ -29,12 +40,13 @@
     zipInput.value = '';
     const itemSelected = document.querySelector('.selected');
 
-    if (!zipCodesCache[zipCode] && isValidZip(zipCode)) {
+
+    if (!zipCodesCache[zipCode] && isValidZip(zipCode) && itemSelected) {
+      fetchLocation(zipCode, itemSelected);
+
+
+    } else if (!zipCodesCache[zipCode] && isValidZip(zipCode)) {
       fetchLocation(zipCode);
-
-
-    } else {
-
     }
 
   });
@@ -46,25 +58,42 @@
   }
 
   function createPlace(place, zipCode) {
-    //place still contains zip code at this point, so split on number
-    //and remove trailing white space
 
-    const cityAndState = place.split(/[0-9]/)[0].trim();
     const li = document.createElement('li');
     li.dataset.zip = zipCode;
-    const location = document.createTextNode(cityAndState);
-    li.appendChild(location);
+    const text = document.createTextNode(place);
+    li.appendChild(text);
     placesList.appendChild(li);
+    zipCodesCache[zipCode] = place;
   }
 
-  async function fetchLocation(zip) {
+  function updatePlace(selected, newPlace, newZip) {
+    // remove old entry from cache
+    delete zipCodesCache[selected.dataset.zip];
+    zipCodesCache[newZip] = newPlace;
+    selected.dataset.zip = newZip;
+    selected.innerHTML = newPlace;
+  }
+
+  function parseLocation(locationData) {
+    const longAddress = locationData.results[0].formatted_address;
+
+    //location still has zipcode and country at this point so split on first number
+    // and remove trailing whitespace
+
+    const cityAndState = longAddress.split(/[0-9]/)[0].trim();
+    return cityAndState;
+  }
+
+  async function fetchLocation(zip, selected = null) {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=${API_KEY}`;
 
     await fetch(url)
       .then(res => res.json())
       .then(data => {
         if (data.status === 'OK') {
-          createPlace(data.results[0].formatted_address, zip);
+          const location = parseLocation(data);
+          selected ? updatePlace(selected, location, zip) : createPlace(location, zip);
         }
       });
   }
