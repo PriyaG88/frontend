@@ -6,18 +6,16 @@
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    <header>
-      <h1>US Zip Lookup</h1>
-    </header>
-    <form id="zip">
-      <input type="text" name="zip">
-      <button type="submit">go</button>
-    </form>
+    <div class="form-container">
+      <form id="zip">
+        <input type="text" name="zip" placeholder="Enter a US zipcode...">
+        <div class="errors-container">
+        </div>
+        <button type="submit">go</button>
+      </form>
+    </div>
     <ul id="places">
     </ul>
     <script src="app.js"></script>
   </body>
-  <footer>
-    <p>Priya Gurung &copy; 2018</p>
-  </footer>
 </html>
