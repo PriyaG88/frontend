@@ -13,37 +13,60 @@ body, form, ul {
   padding: 0;
 }
 
-header, footer {
-  background-color: #000;
-  color: #fff;
-  padding: 30px 40px;
+body {
+  background-color: #feceab;
 }
 
-h1 {
-  text-align: center;
+.form-container {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+
 }
 
 #zip {
-
+  display: flex;
+  flex-direction: column;
 }
 
 input, button {
   padding: 10px;
   font-size: 16px;
-  margin: auto;
+  width: 300px;
+}
+
+input {
+  background-color: #e8e8e8;
+  border: 1px solid #ccc;
+}
+
+.errors-container {
+  height: 30px;
+  position: relative;
+}
+
+.errors-container p {
+  color: #ff0000;
+  margin: 0;
+  text-align: center;
+}
+
+button {
+  background-color: #e84a5f;
+  color: #fff;
+  text-transform: uppercase;
 
 }
 
-#places {
-
-}
 
 li {
   list-style-type: none;
   cursor: pointer;
   padding: 12px;
+  font-family: Arial;
 }
 
 .selected {
-  background-color: #e2e2e2;
+  background-color: #ff847c;
 }
