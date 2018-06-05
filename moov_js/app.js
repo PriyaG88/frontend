@@ -3,6 +3,8 @@
   const zipInput = document.querySelector('input');
   const placesList = document.querySelector('#places');
   const zipCodesCache = {};
+  const errorsDiv = document.querySelector('.errors-container');
+  let error = '';
 
 
   // ignore - this is just to hide the API key
@@ -14,6 +16,7 @@
   }
 
   placesList.addEventListener('click', e => {
+    clearErrors();
     const prevSelected = document.querySelector('.selected');
 
     if (e.target.nodeName === 'LI') {
@@ -35,9 +38,15 @@
     }
   });
 
+  zipInput.addEventListener('change', () => {
+    if (error) {
+      clearErrors();
+    }
+  });
+
   form.addEventListener('submit', e => {
     e.preventDefault();
-    
+
     const zipCode = zipInput.value;
     zipInput.value = '';
     const itemSelected = document.querySelector('.selected');
@@ -45,33 +54,66 @@
 
     if (!zipCodesCache[zipCode] && isValidZip(zipCode)) {
       fetchLocation(zipCode, itemSelected);
+    } else if (zipCodesCache[zipCode]) {
+      error += 'zipcode has already been submitted';
+      logErrors();
     }
   });
 
   function isValidZip(zip) {
-    return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip);
+    if (/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip)) {
+      return true;
+    }
+    error += 'Please enter a valid zip code (ex: 94110)';
+    logErrors();
   }
 
-  function createPlace(place, zipCode) {
-    const li = document.createElement('li');
-    li.dataset.zip = zipCode;
-    const text = document.createTextNode(place);
-    li.appendChild(text);
-    placesList.appendChild(li);
-    zipCodesCache[zipCode] = place;
+  function isValidCountry(address) {
+    if (address.includes('USA')) {
+      return true;
+    }
+    error += 'Please enter a US zipcode';
+    logErrors();
   }
 
-  function updatePlace(selected, newPlace, newZip) {
-    delete zipCodesCache[selected.dataset.zip];
-    zipCodesCache[newZip] = newPlace;
-    selected.dataset.zip = newZip;
-    selected.innerHTML = newPlace;
+  function logErrors() {
+    const p = document.createElement('p');
+    const errorText = document.createTextNode(error);
+    p.appendChild(errorText);
+    errorsDiv.appendChild(p);
+  }
+
+  function clearErrors() {
+    error = '';
+    errorsDiv.innerHTML = '';
+  }
+
+  function createPlace(place = null, zipCode) {
+    if (place) {
+      const li = document.createElement('li');
+      li.dataset.zip = zipCode;
+      const placeText = document.createTextNode(place);
+      li.appendChild(placeText);
+      placesList.appendChild(li);
+      zipCodesCache[zipCode] = place;
+    }
+  }
+
+  function updatePlace(selected, newPlace = null, newZip) {
+    if (newPlace) {
+      delete zipCodesCache[selected.dataset.zip];
+      zipCodesCache[newZip] = newPlace;
+      selected.dataset.zip = newZip;
+      selected.innerHTML = newPlace;
+    }
   }
 
   function parseLocation(locationData) {
-    const longAddress = locationData.results[0].formatted_address; //still has zipcode and country, split on first number to separate out zip
-    const cityAndState = longAddress.split(/[0-9]/)[0].trim(); // and remove trailing whitespace
-    return cityAndState;
+    const longAddress = locationData.results[0].formatted_address;
+    if (isValidCountry(longAddress)) {
+      const cityAndState = longAddress.split(/[0-9]/)[0].trim();
+      return cityAndState;
+    }
   }
 
   async function fetchLocation(zip, selected) {
@@ -83,6 +125,10 @@
         if (data.status === 'OK') {
           const location = parseLocation(data);
           selected ? updatePlace(selected, location, zip) : createPlace(location, zip);
+        } else if (data.status === 'ZERO_RESULTS') {
+          console.log(data);
+          error += 'No result found'
+          logErrors();
         }
       });
   }
