@@ -1,7 +1,7 @@
 (() => {
-    const button = document.querySelector("#add-btn");
-    const inputField = document.querySelector("#input-field");
-    const todoList = document.querySelector("#todo-list");
+    const button = document.querySelector("button");
+    const inputField = document.querySelector("input");
+    const todoList = document.querySelector("ul");
     const errorContainer = document.querySelector("#error-container");
 
     button.addEventListener("click", () => {
