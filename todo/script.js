@@ -27,6 +27,10 @@
             });
         }
     });
+
+    inputField.addEventListener("keyup", e => {
+        if (e.keyCode === 13) button.click();
+    });
 })();
 
 const showError = error => {
