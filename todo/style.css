@@ -1,0 +1,42 @@
+body {
+    font-size: 100%;
+}
+
+#action-items {
+    width: 100%;
+}
+
+#input-field {
+    border-radius: 5px;
+    width: 75%
+}
+
+#add-btn {
+    width: 20%;
+}
+
+#error-container {
+    display: none;
+    color: red;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    
+}
+
+.close-btn:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 415px) {
+    #input-field, #add-btn {
+        width: 100%;
+    }
+}
