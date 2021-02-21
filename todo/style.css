@@ -2,23 +2,26 @@ body {
     font-size: 100%;
 }
 
-#action-items {
+#action-items-wrapper {
     width: 100%;
+    white-space: nowrap;
 }
 
 input, button {
     border: 1px solid black;
-    border-radius: 4px;
     font-size: 1em;
     padding: 10px 15px
 }
 
 input {
-    width: 79%
+    width: 80%;
+    border-radius: 4px 0px 0px 4px;
+    border-right: none;
 }
 
 button {
     width: 20%;
+    border-radius: 0px 4px 4px 0px;
 }
 
 #error-container {
@@ -47,11 +50,11 @@ li:nth-of-type(odd) {
     cursor: pointer;
 }
 
-@media only screen and (max-width: 415px) {
-    input, button {
-        width: 100%;
-    }
+@media only screen and (max-width: 416px) {
     input {
+        width: 320px;
         margin-bottom: 10px;
     }
+    button {
+        width: 80px;
 }
