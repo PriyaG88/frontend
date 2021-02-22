@@ -29,7 +29,7 @@
     });
 
     inputField.addEventListener("keyup", e => {
-        if (e.keyCode === 13) button.click();
+        if (e.key === "Enter") button.click();
     });
 })();
 
