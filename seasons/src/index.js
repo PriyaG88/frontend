@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import SeasonDisplay from "./SeasonDisplay";
 
 class App extends React.Component {
   state = {
@@ -21,7 +22,7 @@ class App extends React.Component {
       return this.state.errorMessage ? (
         <div>{this.state.errorMessage}</div>
       ) : (
-        <div>Latitutde: {this.state.latitude}</div>
+        <SeasonDisplay latitude={this.state.latitude} />
       );
     }
   }
