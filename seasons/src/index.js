@@ -16,7 +16,7 @@ class App extends React.Component {
     );
   }
 
-  render() {
+  renderContent() {
     if (!this.state.latitude && !this.state.errorMessage) {
       return <Spinner message="Please allow location access" />;
     } else {
@@ -26,6 +26,10 @@ class App extends React.Component {
         <SeasonDisplay latitude={this.state.latitude} />
       );
     }
+  }
+
+  render() {
+    return <div>{this.renderContent()}</div>;
   }
 }
 
